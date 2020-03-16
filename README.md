@@ -32,5 +32,5 @@ public static void main(String[] args) {
    <br>③ `new CopyOnWriteArrayList<>();`<br>
 4. 优化建议
   <br>写时复制
-  <br>&nbsp;&nbsp;&nbsp;&nbsp;**CopyOnWrite** 容器即写时复制的容器，往一个容器添加元素的时候，不直接往当前容器 **Object[]** 添加，而是先将当前容器 **Object[]** 进行 **copy** ，复制出一个新的容器`Object[] newElements`，然后往新的容器`Object[] newElements`里添加元素，添加完元素之后，再将原容器的引用指向新的容器`setArray(newElements)`.
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;**CopyOnWrite** 容器即写时复制的容器，往一个容器添加元素的时候，不直接往当前容器 **Object[]** 添加，而是先将当前容器 **Object[]** 进行 **copy**，复制出一个新的容器`Object[] newElements`，然后往新的容器`Object[] newElements`里添加元素，添加完元素之后，再将原容器的引用指向新的容器`setArray(newElements)`.
   <br>&nbsp;&nbsp;&nbsp;&nbsp;这样做的好处是可以对 **CopyOnWrite** 容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以 **CopyOnWrite** 容器也是一种读写分离的思想，读和写不同的容器。
